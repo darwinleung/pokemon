@@ -11,8 +11,10 @@ st.markdown("# Pokemon TCG Mulligan Calculator")
 
 st.image("img/Iron Thorns Tyranitar.webp", width = 100)
 
-basic_pkm_count = st.number_input("Basic Pokemon Count:", value = 4, step = 1)
-st.write("You have ", basic_pkm_count, " basic pokemon")
+col1, col2 = st.columns(2,vertical_alignment="center")
+
+basic_pkm_count = col1.number_input("Basic Pokemon Count:", value = 4, step = 1)
+col1.write(f"You have {basic_pkm_count} basic Pokémon")
 
 def prob_of_mulligan(num_specific_card=4, total_cards=60, hand_size=7):
     """
@@ -49,22 +51,28 @@ def n_mulligan_prob(num_specific_card=4, mulligan_count=0):
 
 def mulligan_count_prob_chart(num_specific_card=4, n=10):
     prob = prob_of_mulligan(num_specific_card)
-    st.write("You are expected to have {:.02f} mulligans.".format(expected_mulligans(prob)))
+    col1.write(f"You are expected to have {expected_mulligans(prob):.02f} mulligans.")
     
     x_axis = []
     y_axis = []
+    total_prob = 0
     
-    for i in range(n + 1):
+    for i in range(n + 1):  # Including n mulligans
         x_axis.append(i)
-        y = n_mulligan_prob(num_specific_card, i) * 100
+        y = n_mulligan_prob(num_specific_card, i)
         y_axis.append(y)
-        st.write("Probability of having {} mulligans: {:.02f}%".format(i, y))
+        total_prob += y
+        col1.write(f"Probability of having {i} mulligans: {y * 100:.02f}%")
+        
+    col1.write(f"Probability of having {n}+ mulligans: {(1 - total_prob) * 100:.02f}%")
     
-    plt.figure(figsize=(8, 4))
-    plt.bar(x_axis, y_axis, color='skyblue')
+    # Plotting with Seaborn dark theme
+    sns.set_theme(style="darkgrid")
+    plt.figure(figsize=(10, 6))
+    plt.bar(x_axis, [y * 100 for y in y_axis], color='skyblue')
     plt.xlabel("Number of Mulligans")
     plt.ylabel("Probability (%)")
     plt.title("Probability Distribution of Mulligans")
-    st.pyplot(plt)  # Display the plot in Streamlit
+    col2.pyplot(plt)  # Display the plot in Streamlit
 
 mulligan_count_prob_chart(basic_pkm_count)
