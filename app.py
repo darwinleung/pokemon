@@ -7,7 +7,7 @@ from math import perm
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-st.set_page_config(page_title="PTCG Calculators")
+st.set_page_config(page_title="PTCG Calculators", page_icon="img/favicon.ico")
 
 st.markdown("# Pokemon TCG Mulligan Calculator")
 
