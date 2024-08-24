@@ -7,6 +7,8 @@ from math import perm
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+st.set_page_config(page_title="PTCG Calculators")
+
 st.markdown("# Pokemon TCG Mulligan Calculator")
 
 st.image("img/Iron Thorns Tyranitar.webp", width = 100)
