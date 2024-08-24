@@ -14,7 +14,6 @@ st.image("img/Iron Thorns Tyranitar.webp", width = 100)
 col1, col2 = st.columns(2,vertical_alignment="center")
 
 basic_pkm_count = col1.number_input("Basic Pokemon Count:", value = 4, step = 1)
-col1.write(f"You have {basic_pkm_count} basic Pokémon")
 
 def prob_of_mulligan(num_specific_card=4, total_cards=60, hand_size=7):
     """
@@ -57,7 +56,7 @@ def mulligan_count_prob_chart(num_specific_card=4, n=10):
     y_axis = []
     total_prob = 0
     
-    for i in range(n + 1):  # Including n mulligans
+    for i in range(n):  # Including n mulligans
         x_axis.append(i)
         y = n_mulligan_prob(num_specific_card, i)
         y_axis.append(y)
