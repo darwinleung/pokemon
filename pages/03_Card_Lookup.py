@@ -1,19 +1,14 @@
 import streamlit as st
 
-st.set_page_config(page_title="Card Lookup", page_icon="img/favicon.ico")
-
-st.markdown("# Card Lookup")
-st.markdown("WIP") 
-
-
-import streamlit as st
 from pokemontcgsdk import Card, RestClient
 
+st.set_page_config(page_title="Card Lookup", page_icon="img/favicon.ico")
+
 # Configure the API key
-RestClient.configure("YOUR_API_KEY_HERE")
+RestClient.configure("f6461fa4-0eb0-4b9b-a404-e846742da4e5")
 
 st.title("Pokémon TCG Card Lookup")
-st.write("Here you can look up any card and check the market price")
+st.write("Here you can look up any card and check the market price.")
 
 # Search input
 search_query = st.text_input("Enter card name or ID:")
@@ -43,9 +38,17 @@ if search_query:
             # Display market prices if available
             if hasattr(card, 'tcgplayer') and hasattr(card.tcgplayer, 'prices'):
                 st.subheader("Market Prices")
-                for price_type, price_data in card.tcgplayer.prices.items():
-                    if price_data:
-                        st.write(f"**{price_type.capitalize()}:** ${price_data.market:.2f}")
+                prices = card.tcgplayer.prices
+                if prices.normal and prices.normal.market:
+                    st.write(f"**Normal:** ${prices.normal.market:.2f}")
+                if prices.holofoil and prices.holofoil.market:
+                    st.write(f"**Holofoil:** ${prices.holofoil.market:.2f}")
+                if prices.reverseHolofoil and prices.reverseHolofoil.market:
+                    st.write(f"**Reverse Holofoil:** ${prices.reverseHolofoil.market:.2f}")
+                if prices.firstEditionHolofoil and prices.firstEditionHolofoil.market:
+                    st.write(f"**1st Edition Holofoil:** ${prices.firstEditionHolofoil.market:.2f}")
+                if prices.firstEditionNormal and prices.firstEditionNormal.market:
+                    st.write(f"**1st Edition Normal:** ${prices.firstEditionNormal.market:.2f}")
             
             st.markdown("---")
     else:
