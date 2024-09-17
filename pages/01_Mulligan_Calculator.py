@@ -48,11 +48,11 @@ def n_mulligan_prob(num_specific_card=4, mulligan_count=0):
     p = 1 - prob_of_mulligan(num_specific_card)
     return ((1 - p) ** mulligan_count) * p
 
-# prompt: build a bar chart to show the probability distribution above
+# bar chart to show the probability distribution above
 
 def mulligan_count_prob_chart(num_specific_card=4, n=10):
     prob = prob_of_mulligan(num_specific_card)
-    col1.write(f"You are expected to have {expected_mulligans(prob):.02f} mulligans.")
+    col1.write(f"If you have {basic_pkm_count} basic Pokemons in your deck, you are expected to have {expected_mulligans(prob):.02f} mulligans.")
     
     x_axis = []
     y_axis = []
