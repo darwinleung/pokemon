@@ -8,14 +8,14 @@ st.set_page_config(page_title="Card Lookup", page_icon="img/favicon.ico")
 RestClient.configure("f6461fa4-0eb0-4b9b-a404-e846742da4e5")
 
 st.title("Pokémon TCG Card Lookup")
-st.write("Here you can look up any card and check the market price.")
+st.write("Here you can look up any card and check the market price in USD.")
 
 # Search input
 search_query = st.text_input("Enter card name or ID:")
 
 if search_query:
     # Search for cards
-    cards = Card.where(q=f"name:*{search_query}*")
+    cards = Card.where(q=f'name:*{search_query}*')
     
     if cards:
         for card in cards:
