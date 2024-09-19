@@ -6,8 +6,10 @@ from math import comb
 st.set_page_config(page_title="Prize Pool", page_icon="img/favicon.ico")
 
 st.markdown("# Prize Pool Card Count")
-st.markdown("Sometimes you might wonder how many cards being trapped in the prize pool.\
-            Here you can see the probability of having a specific card(s) in your prize pool.") 
+
+st.image("img/6prize.png")
+st.markdown("Sometimes you might wonder how many cards should you put in the deck.\
+            Here you can see the probability of having a specific card(s) being prized.") 
 
 n = st.slider("Number of specific cards in deck:", 0, 4, 1)
 
@@ -40,7 +42,7 @@ def prob_specific_cards_in_prize_pool(num_specific_card, cards_trapped, total_ca
     return probability
 
 st.write(f"If you put {n} specific cards in your deck. \
-         There is a {100-prob_specific_cards_in_prize_pool(n,0)*100:.02f}% chance that you will have at least 1 of them in your prize pool.")
+         There is a {prob_specific_cards_in_prize_pool(n,n)*100:.02f}% chance that you will prize all of them.")
 
 for i in range(n+1):
-  st.write(f"Probability of having {i} specific cards in prize pool: {prob_specific_cards_in_prize_pool(n,i)*100:.02f}%")
+  st.write(f"Probability of prizing {i} specific cards: {prob_specific_cards_in_prize_pool(n,i)*100:.02f}%")
