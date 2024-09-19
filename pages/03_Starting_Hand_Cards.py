@@ -13,7 +13,7 @@ n = st.slider("Number of specific cards in deck:", 0, 4, 1)
 
 # prompt: write a function to calculate the probability of drawing 7 cards with k number of a certain card in a 60 cards deck
 
-def prob_k_cards(k, num_specific_card=n, total_cards=59, hand_size=7):
+def prob_k_cards(k, num_specific_card=n, total_cards=60, hand_size=7):
   """
   Calculates the probability of drawing exactly k specific cards in a hand.
 

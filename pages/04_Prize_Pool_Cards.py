@@ -13,14 +13,14 @@ n = st.slider("Number of specific cards in deck:", 0, 4, 1)
 
 # prompt: write a function to calculate the probability of drawing 7 cards with k number of a certain card in a 60 cards deck
 
-def prob_specific_cards_in_prize_pool(num_specific_card, cards_trapped, total_cards=59, prize_pool_size=6):
+def prob_specific_cards_in_prize_pool(num_specific_card, cards_trapped, total_cards=60, prize_pool_size=6):
     """
     Calculate the probability of a specific number of cards being trapped in the Prize pool.
 
     Args:
         num_specific_card: The number of specific cards in the deck.
         cards_trapped: The number of specific cards to be trapped in the Prize pool.
-        total_cards: The total number of cards in the deck (default is 59).
+        total_cards: The total number of cards in the deck (default is 60).
         prize_pool_size: The size of the Prize pool (default is 6).
     
     Returns:
@@ -43,4 +43,4 @@ st.write(f"If you put {n} specific cards in your deck. \
          There is a {100-prob_specific_cards_in_prize_pool(n,0)*100:.02f}% chance that you will have at least 1 of them in your prize pool.")
 
 for i in range(n+1):
-  st.write(f"Probability of having {i} specific cards in prize pool: {prob_specific_cards_in_prize_pool(n,i)*100:.03f}%")
+  st.write(f"Probability of having {i} specific cards in prize pool: {prob_specific_cards_in_prize_pool(n,i)*100:.02f}%")
